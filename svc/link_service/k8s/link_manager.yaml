@@ -18,13 +18,13 @@ spec:
         app: manager
     spec:
       containers:
-      - name: link-manager
-        image: g1g1/delinkcious-link:0.2
-        ports:
-        - containerPort: 8080
-      # envFrom:
-      # - configMapRef:
-      #     name: link-manager-config
+        - name: link-manager
+          image: g1g1/delinkcious-link:0.2
+          ports:
+            - containerPort: 8080
+      envFrom:
+        - configMapRef:
+            name: link-manager-config
 ---
 apiVersion: v1
 kind: Service
@@ -32,7 +32,7 @@ metadata:
   name: link-manager
 spec:
   ports:
-  - port:  8080
+    - port: 8080
   selector:
     svc: link
     app: manager
